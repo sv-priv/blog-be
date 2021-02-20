@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Category.associate = models => {
         Category.hasMany(models.Post, {
-             onDelete: 'cascade' // on delete category it will delete all the posts
+             onDelete: 'cascade'
         });
     }
 

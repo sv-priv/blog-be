@@ -1,12 +1,8 @@
 const express = require('express');
-
-//require database
 const db = require('./models');
 const categoriesRoute = require("./routes/categories");
 const postsRoute = require("./routes/posts");
 const auth = require("./routes/auth");
-
-//initializing express instance
 const app = express();
 const PORT = process.env.PORT || 3000;
 

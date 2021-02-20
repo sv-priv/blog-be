@@ -4,6 +4,7 @@ const db = require('../models/index');
 
 
 const auth = async (req, res, next) =>{
+
     const token = req.header('Authorization').replace('Bearer ','');
     const decoded = await jwt.verify( token, 'testsecret');
 

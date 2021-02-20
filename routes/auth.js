@@ -81,7 +81,6 @@ router
 .post(async (req, res) => {
 
     try {
-        //
         const _hashedPassword = await bcrypt.hash(req.body.password, 8);
         const _token = await jwt.sign({ username: req.body.username }, 'testsecret');
 
@@ -119,11 +118,6 @@ router
 
 });
 
-// lets see if the user is in the database and if the user
-// has a token, if he does, delete the token and the account,
-//forcingly  logging him out
-//loging him
-// delete
 
 router
 .route('/logout')

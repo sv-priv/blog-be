@@ -1,5 +1,7 @@
 const { DataTypes } = require("sequelize");
 
+
+// category model, sequelize provides auto incremental primary key
 module.exports = (sequelize, DataTypes) => {
 
 
@@ -17,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
 
     });
 
+
+    // category has many Posts
     Category.associate = models => {
         Category.hasMany(models.Post, {
              onDelete: 'cascade'

@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 
     });
 
+    // post can have only one category, defining one to many relationship with Category model
     Post.associate = models => {
         Post.belongsTo(models.Category, {
             onDelete: 'cascade'

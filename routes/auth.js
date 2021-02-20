@@ -3,8 +3,6 @@ let router = express.Router();
 const bcrypt = require('bcryptjs');
 const db = require('../models/index');
 const jwt = require('jsonwebtoken')
-
-// using authMiddleware to ensure authorization to access the backend
 const authMiddleware = require('../middleware/authMiddlewate');
 
 

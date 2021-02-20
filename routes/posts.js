@@ -65,26 +65,6 @@ router
       });
 });
 
-//delete one post -doesn't work
-// router
-// .route('/:id')
-// .post((req, res) => {
-
-//   const title =  req.params.id;
-
-//   db.Post.destroy({
-//         where: { title: title },
-//         truncate: true
-
-//     }).then(() => {
-//         res.status(200).send('Removed Successfully');
-//        }).catch((err) => {
-//         console.log(err);
-//         res.status(500).send('We failed to delete for some reason');
-//        });
-// });
-
-//update a single post
 
 router
 .route('/edit')

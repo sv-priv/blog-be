@@ -8,8 +8,6 @@ const jwt = require('jsonwebtoken')
 const authMiddleware = require('../middleware/authMiddlewate');
 
 
-
-
 //get all users
 router
 .route('/users')
@@ -100,6 +98,7 @@ router
 
             const pas = user[0].password;
             const isMatch = await bcrypt.compare(req.body.password, user[0].password);
+
             if(isMatch){
 
             res.send(user);

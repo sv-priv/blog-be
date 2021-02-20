@@ -65,7 +65,7 @@ router
         if(category == null){
             throw new Error();
         }else{
-            res.send(category.Posts);
+            res.send(category);
         }
 
     });

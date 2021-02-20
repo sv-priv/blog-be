@@ -23,8 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     Post.associate = models => {
         Post.belongsTo(models.Category, {
             onDelete: 'cascade'
-            // foreignKey : 'categoryId',
-            // as: 'category'
         })
     }
     return Post;

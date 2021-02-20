@@ -3,13 +3,17 @@ let router = express.Router();
 const bcrypt = require('bcryptjs');
 const db = require('../models/index');
 const jwt = require('jsonwebtoken')
+
+// using authMiddleware to ensure authorization to access the backend
 const authMiddleware = require('../middleware/authMiddlewate');
+
+
 
 
 //get all users
 router
 .route('/users')
-.get( authMiddleware, async (req, res) => {
+.get( async (req, res) => {
 
     try {
         db.User.findAll({
@@ -30,21 +34,27 @@ router
 .post( async (req, res) => {
 
     try {
+        // user should have hashed password stored in the database
+        // hashing the password using bcrypjs
         const _hashedPassword = await bcrypt.hash(req.body.password, 8);
+
+        // creating an authentication token based on the unique username
         const _token = await jwt.sign({ username: req.body.username }, 'testsecret');
 
-       const checkUserExists = await db.User.findOne({
 
+        //checking if the username is unique
+       const checkUserExists = await db.User.findOne({
             where: {
                 username: req.body.username
             }
         });
 
         if(checkUserExists != null){
-
             throw new Error("user exists");
-
         }else{
+
+            //creating user with the token derived from the username, and the secret global passphrase
+            //using jsonwebtoken
             db.User.create({
 
                 username: req.body.username,
@@ -71,6 +81,7 @@ router
 .post(async (req, res) => {
 
     try {
+        //
         const _hashedPassword = await bcrypt.hash(req.body.password, 8);
         const _token = await jwt.sign({ username: req.body.username }, 'testsecret');
 

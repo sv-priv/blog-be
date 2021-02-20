@@ -1,6 +1,6 @@
 const express = require('express');
 
-//importing database
+//require database
 const db = require('./models');
 const categoriesRoute = require("./routes/categories");
 const postsRoute = require("./routes/posts");
@@ -10,20 +10,18 @@ const auth = require("./routes/auth");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-
 app.use(function(req, res, next){
-    req.header("Access-Control-Allow-Origin", "*");
-    req.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
-    req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");    next();
+    res.header("Access-Control-Allow-Headers", "Authorization, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
 app.use(express.urlencoded( { extended:true } ));
 app.use(express.json());
 
+//setting the routes in categoriesRoute, implemented in routes/categories
+// to extend on the /api/categories  route
 
 app.use("/api/categories", categoriesRoute)
 
